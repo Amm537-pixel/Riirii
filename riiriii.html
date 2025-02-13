@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine Riiriii?</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #ffebf0;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            animation: fadeIn 2s ease-in-out;
+        }
+        h1 {
+            color: #e6005c;
+            animation: popIn 1s ease-in-out;
+        }
+        .heart {
+            color: red;
+            font-size: 30px;
+            animation: heartbeat 1s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            background-color: #e6005c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 5px;
+            transition: transform 0.2s;
+            animation: popIn 1s ease-in-out;
+        }
+        button:hover {
+            background-color: #cc0052;
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes floatingHearts {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100vh); }
+        }
+        .heart-float {
+            position: absolute;
+            bottom: -50px;
+            font-size: 25px;
+            color: red;
+            animation: floatingHearts 5s linear infinite;
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            opacity: 0;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        }
+        .popup.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Will You Be My Valentine Riiriii? <span class="heart">❤️</span></h1>
+        <div class="buttons">
+            <button onclick="showPopup('Yay! Can’t wait! ILY! ❤️')">Yess love!</button>
+            <button onclick="showPopup('I knew you’d say yes!😊')">Absolutelyy Ammm!</button>
+        </div>
+    </div>
+    <div id="popup" class="popup"></div>
+    <script>
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.classList.add('heart-float');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createFloatingHeart, 500);
+
+        function showPopup(message) {
+            const popup = document.getElementById('popup');
+            popup.textContent = message;
+            popup.classList.add('show');
+            setTimeout(() => popup.classList.remove('show'), 2000);
+        }
+    </script>
+</body>
+</html>
